@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    var inp;
+    var arr;
+    var i;
+    var div
+    var index;
+    var j;
+    var k;
+
+    function add() {
+        div = document.createElement('div')
+        inp = document.getElementsByTagName('input').length
+        div.innerHTML = `<input id=${inp} /><button onclick='remove(this)' class='abc'>Remove</button>`
+        document.body.appendChild(div);
+        // console.log(div.childNodes[0].id)
+    }
+
+    function submit() {
+        arr = JSON.parse(localStorage.getItem('names')) || []
+        // console.log(index);
+        inp = document.getElementsByTagName('input').length
+        // console.log(inp)
+        for (i = 0; i < inp; i++) {
+            // console.log(i);
+            k = document.getElementById(i).value;  
+        console.log(k)
+            arrayExist = arr.some(obj => obj == k);
+            if (!arrayExist) {            // false h then push in arr
+                arr.push(k);   
+            }
+        }
+        localStorage.setItem("names", JSON.stringify(arr));
+        // localStorage.removeItem("names")
+
+    }
+
+    function remove(ele) {
+        console.log(ele)
+        var arr1 = []
+        
+        var e = JSON.parse(localStorage.getItem('names'));
+       
+        var divparent = ele.parentNode;
+        console.log(divparent)
+        // console.log(divparent.children[0].getAttribute('id'), e)
+        // e.splice(divparent.children[0].getAttribute('id'), 1);
+        // console.log(divparent.children[0].value)
+        let index=e.indexOf(divparent.children[0].value)
+        console.log(divparent.children[0].value)
+        console.log(index)
+        if(index>=0){
+            e.splice(index, 1);
+           localStorage.setItem("names", JSON.stringify(e));
+        }
+        
+        ele.parentNode.innerHTML = ""
+    }
+    var element;
+    var show = []
+
+    function inp() {
+        var b = JSON.parse(localStorage.getItem('names'))
+        b.forEach((element) => {
+            (element)
+            // var e = document.getElementById('inp').innerHTML = element
+            // console.log(element)
+            show.push(element)
+        });
+        // console.log(show)
+
+
+        for (var l = 0; l < show.length; l++) {
+            // console.log(show[l])
+
+            var q = document.createElement('div')
+            q.value = show[l]
+            //  console.log(q.value)
+            q.innerHTML = `<input id=${l} value=${show[l]}><button onclick="remove(this)">Remove</button>`
+            document.body.appendChild(q);
+        }
+    }
+</script>
+
+<body onload="inp()">
+    <h2>Add Categories</h2>
+
+    <button onclick="add()">Add</button>
+    <button onclick="submit()">Sumbit</button>
+    </br>&nbsp;&nbsp;&nbsp;&nbsp; <p id="p"></p>
+
+</body>
+
+</html>
