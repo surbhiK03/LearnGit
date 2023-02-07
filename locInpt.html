@@ -23,7 +23,7 @@
         document.body.appendChild(div);
         // console.log(div.childNodes[0].id)
     }
-
+//jfhtrgjuoyhtoht
     function submit() {
         arr = JSON.parse(localStorage.getItem('names')) || []
         // console.log(index);
@@ -31,11 +31,11 @@
         // console.log(inp)
         for (i = 0; i < inp; i++) {
             // console.log(i);
-            k = document.getElementById(i).value;  
-        console.log(k)
+            k = document.getElementById(i).value;
+            console.log(k)
             arrayExist = arr.some(obj => obj == k);
             if (!arrayExist) {            // false h then push in arr
-                arr.push(k);   
+                arr.push(k);
             }
         }
         localStorage.setItem("names", JSON.stringify(arr));
@@ -46,22 +46,22 @@
     function remove(ele) {
         console.log(ele)
         var arr1 = []
-        
+
         var e = JSON.parse(localStorage.getItem('names'));
-       
+
         var divparent = ele.parentNode;
         console.log(divparent)
         // console.log(divparent.children[0].getAttribute('id'), e)
         // e.splice(divparent.children[0].getAttribute('id'), 1);
         // console.log(divparent.children[0].value)
-        let index=e.indexOf(divparent.children[0].value)
+        let index = e.indexOf(divparent.children[0].value)
         console.log(divparent.children[0].value)
         console.log(index)
-        if(index>=0){
+        if (index >= 0) {
             e.splice(index, 1);
-           localStorage.setItem("names", JSON.stringify(e));
+            localStorage.setItem("names", JSON.stringify(e));
         }
-        
+
         ele.parentNode.innerHTML = ""
     }
     var element;
